@@ -8,7 +8,7 @@ Azure container instances service lets users to run their images on the cloud se
 </table>
 
 ## Architecture
-![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/Architecture.png)
+![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/Architecture.jpeg)
 
 ## Services
 - **Azure Container Instances**: Service that runs the containers.
@@ -69,9 +69,9 @@ docker push mycontainerregistry001.azurecr.io/swe590api:v1
     * Create Logic Apps
         - Add Container Logic App
             `assets/AddContainerLogicApp`
-            # Image
+            ![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/AddContainerLogicApp.png)
         - Remove Container Logic App
             `assets/RemoveContainerLogicApp`
-            # Image
+            ![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/RemoveContainerLogicApp.png)
 
     * Create Alert in Application Gateway and Connect Triggers to the Corresponding Logic Apps. In case of using controllers in this example like {ipAddress/Data}, it is necessary to create custom probes in the application gateway to solve Service Unavailable problem.
