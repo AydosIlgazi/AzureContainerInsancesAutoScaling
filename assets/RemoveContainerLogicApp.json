@@ -1,0 +1,43 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "RemoveContainerInstance": {
+                "inputs": {
+                    "function": {
+                        "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Web/sites/swe590function/functions/RemoveContainerInstance"
+                    }
+                },
+                "runAfter": {},
+                "type": "Function"
+            },
+            "UpdateBackendPool": {
+                "inputs": {
+                    "body": "@body('RemoveContainerInstance')",
+                    "function": {
+                        "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Web/sites/swe590function/functions/UpdateBackendPool"
+                    }
+                },
+                "runAfter": {
+                    "RemoveContainerInstance": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Function"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {},
+        "triggers": {
+            "manual": {
+                "inputs": {
+                    "schema": {}
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    },
+    "parameters": {}
+}

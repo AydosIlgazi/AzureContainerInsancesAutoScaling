@@ -1,0 +1,131 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Create_or_update_a_container_group": {
+                "inputs": {
+                    "body": {
+                        "location": "East US",
+                        "properties": {
+                            "containers": [
+                                {
+                                    "name": "@{rand(1,1000)}",
+                                    "properties": {
+                                        "image": "mycontainerregistry001.azurecr.io/swe590api:v1",
+                                        "ports": [
+                                            {
+                                                "port": 80,
+                                                "protocol": "TCP"
+                                            },
+                                            {
+                                                "port": 8080,
+                                                "protocol": "TCP"
+                                            }
+                                        ],
+                                        "resources": {
+                                            "requests": {
+                                                "cpu": 1,
+                                                "memoryInGB": 1
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "imageRegistryCredentials": [
+                                {
+                                    "password": "****",
+                                    "server": "mycontainerregistry001.azurecr.io",
+                                    "username": "myContainerRegistry001"
+                                }
+                            ],
+                            "ipAddress": {
+                                "ports": [
+                                    {
+                                        "port": 80,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "type": "Private"
+                            },
+                            "osType": "Linux",
+                            "restartPolicy": "OnFailure",
+                            "sku": "Standard",
+                            "subnetIds": [
+                                {
+                                    "id": "/subscriptions/{subcsiptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/myACISubnet"
+                                }
+                            ]
+                        }
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['aci']['connectionId']"
+                        }
+                    },
+                    "method": "put",
+                    "path": "/subscriptions/@{encodeURIComponent({subcsiptionId})}/resourceGroups/@{encodeURIComponent('myResourceGroup')}/providers/Microsoft.ContainerInstance/containerGroups/@{encodeURIComponent(rand(1,1000))}",
+                    "queries": {
+                        "x-ms-api-version": "2021-07-01"
+                    }
+                },
+                "runAfter": {},
+                "type": "ApiConnection"
+            },
+            "Delay_2": {
+                "inputs": {
+                    "interval": {
+                        "count": 4,
+                        "unit": "Minute"
+                    }
+                },
+                "runAfter": {
+                    "Create_or_update_a_container_group": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Wait"
+            },
+            "UpdateBackendPool": {
+                "inputs": {
+                    "function": {
+                        "id": "/subscriptions/{subcsiptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Web/sites/swe590function/functions/UpdateBackendPool"
+                    }
+                },
+                "runAfter": {
+                    "Delay_2": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Function"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "manual": {
+                "inputs": {
+                    "schema": {}
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "value": {
+                "aci": {
+                    "connectionId": "/{subcsiptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Web/connections/aci",
+                    "connectionName": "aci",
+                    "id": "/{subcsiptionId}/providers/Microsoft.Web/locations/centralus/managedApis/aci"
+                }
+            }
+        }
+    }
+}

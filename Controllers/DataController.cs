@@ -12,10 +12,10 @@ namespace swe590api.Controllers
     public class DataController : ControllerBase
     {
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<DataController> _logger;
         private readonly Random _random = new Random();
 
-        public DataController(ILogger<WeatherForecastController> logger)
+        public DataController(ILogger<DataController> logger)
         {
             _logger = logger;
         }
