@@ -1,4 +1,4 @@
-#AutoScaling on Azure Container Instances
+# AutoScaling on Azure Container Instances
 <table>
 <tr>
 <td>
@@ -7,10 +7,10 @@ Azure container instances service lets users to run their images on the cloud se
 </tr>
 </table>
 
-##Architecture
+## Architecture
 ![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/Architecture.png)
 
-##Services
+## Services
 - **Azure Container Instances**: Service that runs the containers.
 - **Application Gateway**: Makes container instances publicly available, load balances the incoming request and sends the alerts to the other services to trigger scale.
 - **Logic Apps**: Provides scaling in/out workflow and functionality to the alerts that are triggered from gateway.
@@ -19,7 +19,7 @@ Azure container instances service lets users to run their images on the cloud se
 - **Container Registries**: Stores container images to use automatic initialization of container instances later.
 
 
-##Implementation
+## Implementation
 
 - Using Azure CLI
 ```bash
