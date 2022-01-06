@@ -67,11 +67,13 @@ docker push mycontainerregistry001.azurecr.io/swe590api:v1
         ```
 
     * Create Logic Apps
-        - Add Container Logic App
+        - Add Container Logic App 
             `assets/AddContainerLogicApp`
+            
             ![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/AddContainerLogicApp.PNG)
         - Remove Container Logic App
             `assets/RemoveContainerLogicApp`
+            
             ![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/RemoveContainerLogicApp.PNG)
 
     * Create Alert in Application Gateway and Connect Triggers to the Corresponding Logic Apps. In case of using controllers in this example like {ipAddress/Data}, it is necessary to create custom probes in the application gateway to solve Service Unavailable problem.
