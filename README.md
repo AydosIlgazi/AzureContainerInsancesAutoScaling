@@ -8,7 +8,7 @@ Azure container instances service lets users to run their images on the cloud se
 </table>
 
 ##Architecture
-![me](https://github.com/AydosIlgazi/swe590api/blob/master/Assets/Architecture.png)
+![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/Architecture.png)
 
 ##Services
 - **Azure Container Instances**: Service that runs the containers.
