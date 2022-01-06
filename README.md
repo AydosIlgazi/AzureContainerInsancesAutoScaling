@@ -21,7 +21,7 @@ Azure container instances service lets users to run their images on the cloud se
 
 ## Implementation
 
-- Using Azure CLI
+- Azure CLI
 ```bash
 #Create a vnet and application gateway subnet
 az network vnet create --name myVNet --resource-group myResourceGroup --location eastus --address-prefix 10.0.0.0/16 --subnet-name myAGSubnet --subnet-prefix 10.0.1.0/24
@@ -39,7 +39,7 @@ az container create --name appcontainer --resource-group myResourceGroup --image
 az network application-gateway create --name myAppGateway --location eastus --resource-group myResourceGroup --capacity 2 --sku Standard_v2 --http-settings-protocol http --public-ip-address myAGPublicIPAddress --vnet-name myVNet --subnet myAGSubnet --servers <ContainerIp>
 ```
 
-- Using Windows Powershell
+- Windows Powershell\
 Container registry is necessary only if you want to use your image. Otherwise you give image like "mcr.microsoft.com/azuredocs/aci-helloworld" without registering it. In this example, I have used my image from dockher hub. 
 ```bash
 Install-Module Az
@@ -57,7 +57,7 @@ docker tag aydosilgazi/swe590api mycontainerregistry001.azurecr.io/aydosilgazi/s
 docker push mycontainerregistry001.azurecr.io/swe590api:v1
 ```
 
-- Using Azure Dashboard
+- Azure Dashboard
 
     * Create Azure Functions
         ```bash
