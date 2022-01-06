@@ -67,12 +67,12 @@ docker push mycontainerregistry001.azurecr.io/swe590api:v1
         ```
 
     * Create Logic Apps
-        - Add Container Logic App 
-            `assets/AddContainerLogicApp` :
+        - Add Container Logic App: 
+            `assets/AddContainerLogicApp`
             
             ![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/AddContainerLogicApp.PNG)
-        - Remove Container Logic App
-            `assets/RemoveContainerLogicApp` :
+        - Remove Container Logic App: 
+            `assets/RemoveContainerLogicApp`
             
             ![me](https://github.com/AydosIlgazi/swe590api/blob/master/assets/RemoveContainerLogicApp.PNG)
 
